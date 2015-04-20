@@ -1,0 +1,90 @@
+<project
+	xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	
+	<modelVersion>4.0.0</modelVersion>
+	
+	<groupId>com.xunyss.ssing</groupId>
+	<artifactId>ssing-gen</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	
+	<name>ssing-gen</name>
+	<description>ssing-gen</description>
+	
+	<properties>
+		<xingapi.dir>C:/eBEST/xingAPI</xingapi.dir>
+	</properties>
+	
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+		</dependency>
+	</dependencies>
+	
+	<build>
+		<pluginManagement>
+			<plugins>
+				<!-- [ignore eclipse(m2e) error] -->
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>org.jvnet.com4j</groupId>
+										<artifactId>maven-com4j-plugin</artifactId>
+										<versionRange>[0.0,)</versionRange>
+										<goals>
+											<goal>gen</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore/>
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+		
+		<plugins>
+			<plugin>
+				<groupId>org.jvnet.com4j</groupId>
+				<artifactId>maven-com4j-plugin</artifactId>
+				<version>2.1</version>
+				<executions>
+					<execution>
+						<id>gen-session</id>
+						<goals>
+							<goal>gen</goal>			
+						</goals>
+						<configuration>
+							<file>${xingapi.dir}/XA_Session.dll</file>
+							<package>com.xunyss.ssing.xa.session</package>
+						</configuration>
+					</execution>
+					<execution>
+						<id>gen-dataset</id>
+						<goals>
+							<goal>gen</goal>
+						</goals>
+						<configuration>
+							<file>${xingapi.dir}/XA_DataSet.dll</file>
+							<package>com.xunyss.ssing.xa.dataset</package>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+	
+</project>

@@ -1,0 +1,20 @@
+
+http://com4j.kohsuke.org/
+
+https://github.com/kohsuke/com4j
+
+usage tlbimp
+java -jar tlbimp.jar -o {생성 폴더명} -p {생성 패키지명} {변환시킬 DLL 또는 OCX 파일 경로}
+
+using tlbimp from Ant
+http://com4j.kohsuke.org/ant.html
+
+using tlbimp from Maven
+http://com4j.kohsuke.org/maven-com4j-plugin/index.html
+
+
+XA_Session.dll
+XA_DataSet.dll
+
+[참고자료]
+http://sjp007.mireene.com/tc/tag/com4j#entry_120
