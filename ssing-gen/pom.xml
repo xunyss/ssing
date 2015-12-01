@@ -5,9 +5,13 @@
 	
 	<modelVersion>4.0.0</modelVersion>
 	
-	<groupId>com.xunyss.ssing</groupId>
+	<parent>
+		<groupId>com.xunyss.ssing</groupId>
+		<artifactId>ssing</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	
 	<artifactId>ssing-gen</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	
 	<name>ssing-gen</name>
@@ -16,14 +20,6 @@
 	<properties>
 		<xingapi.dir>C:/eBEST/xingAPI</xingapi.dir>
 	</properties>
-	
-	<dependencies>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.12</version>
-		</dependency>
-	</dependencies>
 	
 	<build>
 		<pluginManagement>

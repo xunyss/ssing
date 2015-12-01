@@ -2,7 +2,6 @@ package com.xunyss.ssing.test;
 
 import com.xunyss.ssing.xa.dataset.IXAQuery;
 import com.xunyss.ssing.xa.dataset.events._IXAQueryEvents;
-import com.xunyss.ssing.xa.session.ClassFactory;
 import com.xunyss.ssing.xa.session.IXASession;
 import com.xunyss.ssing.xa.session.events._IXASessionEvents;
 import com4j.EventCookie;
@@ -19,7 +18,7 @@ public class SimpleTest {
 	public void run() throws Exception {
 		System.out.println("program start..");
 		
-		iXASession = ClassFactory.createXASession();
+		iXASession = com.xunyss.ssing.xa.session.ClassFactory.createXASession();
 		EventCookie cookie1 = iXASession.advise(_IXASessionEvents.class, new _IXASessionEvents() {
 			@Override
 			public void login(String szCode, String szMsg) {
@@ -43,13 +42,13 @@ public class SimpleTest {
 		boolean r = iXASession.connectServer("demo.etrade.co.kr", 20001);
 		System.out.println("connectServer : " + r);
 		
-		iXASession.login("xuny", "ghk2skfm", "ghk2skfm", 0, true);
+		iXASession.login("xuny", "password", "certpass", 0, true);
 		
 		Thread.sleep(2500);
 		
 		
-		iXAQuery1 = ClassFactory.createXAQuery();
-		iXAQuery2 = ClassFactory.createXAQuery();
+		iXAQuery1 = com.xunyss.ssing.xa.dataset.ClassFactory.createXAQuery();
+		iXAQuery2 = com.xunyss.ssing.xa.dataset.ClassFactory.createXAQuery();
 		
 		_IXAQueryEvents myeventhandler = new _IXAQueryEvents() {
 			@Override
