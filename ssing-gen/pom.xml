@@ -6,7 +6,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	
 	<parent>
-		<groupId>com.xunyss.ssing</groupId>
+		<groupId>io.xunyss.ssing</groupId>
 		<artifactId>ssing</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
@@ -24,8 +24,8 @@
 	<build>
 		<pluginManagement>
 			<plugins>
-				<!-- [ignore eclipse(m2e) error] -->
-				<plugin>
+				<!-- [ignore eclipse(m2e) error] (older eclipse) -->
+				<!--plugin>
 					<groupId>org.eclipse.m2e</groupId>
 					<artifactId>lifecycle-mapping</artifactId>
 					<version>1.0.0</version>
@@ -48,7 +48,7 @@
 							</pluginExecutions>
 						</lifecycleMappingMetadata>
 					</configuration>
-				</plugin>
+				</plugin-->
 			</plugins>
 		</pluginManagement>
 		
@@ -65,7 +65,7 @@
 						</goals>
 						<configuration>
 							<file>${xingapi.dir}/XA_Session.dll</file>
-							<package>com.xunyss.ssing.xa.session</package>
+							<package>io.xunyss.ssing.xa.session</package>
 						</configuration>
 					</execution>
 					<execution>
@@ -75,7 +75,7 @@
 						</goals>
 						<configuration>
 							<file>${xingapi.dir}/XA_DataSet.dll</file>
-							<package>com.xunyss.ssing.xa.dataset</package>
+							<package>io.xunyss.ssing.xa.dataset</package>
 						</configuration>
 					</execution>
 				</executions>

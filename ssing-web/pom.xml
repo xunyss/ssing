@@ -6,7 +6,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	
 	<parent>
-		<groupId>com.xunyss.ssing</groupId>
+		<groupId>io.xunyss.ssing</groupId>
 		<artifactId>ssing</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
@@ -21,8 +21,8 @@
 	<properties>
 		<!--spring.framework.version>4.2.3.RELEASE</spring.framework.version--><!-- HOTSWAP 안됨. -->
 		<spring.framework.version>4.1.8.RELEASE</spring.framework.version>
-		<log4j2.version>2.4.1</log4j2.version>
-		<slf4j.version>1.7.13</slf4j.version>
+		<log4j2.version>2.6.2</log4j2.version>
+		<slf4j.version>1.7.21</slf4j.version>
 	</properties>
 	
 	<dependencies>
