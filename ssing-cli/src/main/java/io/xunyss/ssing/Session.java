@@ -52,6 +52,7 @@ public class Session {
 	}
 
 	public boolean login(String username, String password, String certpass) {
+		
 		EventCookie sessionCallback = iXASession.advise(_IXASessionEvents.class, new _IXASessionEvents() {
 			@Override
 			public void login(String szCode, String szMsg) {
