@@ -11,11 +11,11 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	
-	<artifactId>ssing-gen</artifactId>
+	<artifactId>ssing-api</artifactId>
 	<packaging>pom</packaging>
 	
-	<name>ssing-gen</name>
-	<description>ssing-gen</description>
+	<name>ssing-api</name>
+	<description>ssing-api</description>
 	
 	<properties>
 		<xingapi.dir>C:/eBEST/xingAPI</xingapi.dir>
