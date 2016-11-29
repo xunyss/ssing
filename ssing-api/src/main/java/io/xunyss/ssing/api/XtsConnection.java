@@ -42,7 +42,7 @@ public class XtsConnection {
 
 			@Override
 			public void disconnect() {
-				System.out.println("###################");
+				System.out.println("##################");
 				System.out.println("Session callback - disconnect() ผ๖วเ");
 			}
 		});
