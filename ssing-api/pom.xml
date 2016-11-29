@@ -12,74 +12,23 @@
 	</parent>
 	
 	<artifactId>ssing-api</artifactId>
-	<packaging>pom</packaging>
+	<packaging>jar</packaging>
 	
 	<name>ssing-api</name>
 	<description>ssing-api</description>
 	
-	<properties>
-		<xingapi.dir>C:/eBEST/xingAPI</xingapi.dir>
-	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>org.jvnet.com4j</groupId>
+			<artifactId>com4j</artifactId>
+			<version>2.1</version>
+		</dependency>
+	</dependencies>
 	
 	<build>
 		<pluginManagement>
-			<plugins>
-				<!-- [ignore eclipse(m2e) error] (older eclipse) -->
-				<!--plugin>
-					<groupId>org.eclipse.m2e</groupId>
-					<artifactId>lifecycle-mapping</artifactId>
-					<version>1.0.0</version>
-					<configuration>
-						<lifecycleMappingMetadata>
-							<pluginExecutions>
-								<pluginExecution>
-									<pluginExecutionFilter>
-										<groupId>org.jvnet.com4j</groupId>
-										<artifactId>maven-com4j-plugin</artifactId>
-										<versionRange>[0.0,)</versionRange>
-										<goals>
-											<goal>gen</goal>
-										</goals>
-									</pluginExecutionFilter>
-									<action>
-										<ignore/>
-									</action>
-								</pluginExecution>
-							</pluginExecutions>
-						</lifecycleMappingMetadata>
-					</configuration>
-				</plugin-->
-			</plugins>
 		</pluginManagement>
-		
 		<plugins>
-			<plugin>
-				<groupId>org.jvnet.com4j</groupId>
-				<artifactId>maven-com4j-plugin</artifactId>
-				<version>2.1</version>
-				<executions>
-					<execution>
-						<id>gen-session</id>
-						<goals>
-							<goal>gen</goal>			
-						</goals>
-						<configuration>
-							<file>${xingapi.dir}/XA_Session.dll</file>
-							<package>io.xunyss.ssing.xa.session</package>
-						</configuration>
-					</execution>
-					<execution>
-						<id>gen-dataset</id>
-						<goals>
-							<goal>gen</goal>
-						</goals>
-						<configuration>
-							<file>${xingapi.dir}/XA_DataSet.dll</file>
-							<package>io.xunyss.ssing.xa.dataset</package>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
 		</plugins>
 	</build>
 	
