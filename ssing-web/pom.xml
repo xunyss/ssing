@@ -18,9 +18,8 @@
 	<description>ssing-web</description>
 	
 	<properties>
-		<!--spring.framework.version>4.2.3.RELEASE</spring.framework.version--><!-- HOTSWAP 안됨. -->
-		<spring.framework.version>4.1.8.RELEASE</spring.framework.version>
-		<log4j2.version>2.6.2</log4j2.version>
+		<spring.framework.version>4.3.4.RELEASE</spring.framework.version>
+		<log4j2.version>2.7</log4j2.version>
 		<slf4j.version>1.7.21</slf4j.version>
 	</properties>
 	
