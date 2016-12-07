@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * 
- * @author XUNY
+ * @author XUNYSS
  */
 public class Settings {
 	
