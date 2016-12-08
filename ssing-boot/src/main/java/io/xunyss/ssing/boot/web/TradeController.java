@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.aop.support.AopUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -98,6 +100,31 @@ public class TradeController {
 		int res = iq.request(false);
 		
 		
+		
+		return "OK";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	@Autowired
+	ApplicationContext context;
+	
+	@RequestMapping("/ctx")
+	public String ctx() {
+		log.debug(context.toString());
+		Object bean = context.getBean(TradeService.class);
+		log.debug(bean.getClass().getName());
+		log.debug(service.getClass().getName());
+		
+		boolean proxy = AopUtils.isAopProxy(bean);
+		log.debug("proxy: {}", proxy);
+		log.debug(AopUtils.getTargetClass(bean).getName());
 		
 		return "OK";
 	}

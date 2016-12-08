@@ -52,6 +52,8 @@ public class Session {
 	 */
 	private final Logger log = LoggerFactory.getLogger(getClass());
 	
+	private static final String LOGIN_SUCCESS = "0000";
+	
 	private IXASession xaSession = null;
 	
 	private boolean logined = false;
@@ -64,7 +66,7 @@ public class Session {
 	private void initialize() {
 		// create COM instance
 		xaSession = ClassFactory.createXASession();
-		xaSession.setName(getClass().getName() + ".xaSession");
+		xaSession.setName(getClass().getName());
 		
 		// bind event handler
 		xaSession.advise(_IXASessionEvents.class, new _IXASessionEvents() {
@@ -80,7 +82,7 @@ public class Session {
 				log.debug("login callback: [{}] {}", szCode, szMsg);
 				
 				// set result
-				logined = "0000".equals(szCode);
+				logined = LOGIN_SUCCESS.equals(szCode);
 				
 				// resume method: login()
 				getInstance().wakeup();
@@ -172,7 +174,7 @@ public class Session {
 				log.info("login requested: ID: {}", id);
 				try {
 					// login callback timeout: 5sec.
-					wait(5000);
+					wait(Settings.getLoginTimeout());
 				}
 				catch (InterruptedException ie) {
 					throw new SessionException("login timeout", ie);
@@ -193,7 +195,11 @@ public class Session {
 	 */
 	public boolean login() {
 		synchronized (this) {
-			return login(Settings.getUserID(), Settings.getUserPasswd(), Settings.getUserCertPasswd());
+			return login(
+				Settings.getUserID(),			// 설정파일 필요
+				Settings.getUserPasswd(),		// 설정파일 필요
+				Settings.getUserCertPasswd()	// 설정파일 필요
+			);
 		}
 	}
 	
@@ -247,8 +253,8 @@ public class Session {
 		Account acc;
 		
 		int cnt = xaSession.getAccountListCount();
-		for (int i = 0; i < cnt; i++) {
-			String accNo = xaSession.getAccountList(i);
+		for (int idx = 0; idx < cnt; idx++) {
+			String accNo = xaSession.getAccountList(idx);
 			
 			acc = new Account();
 			acc.setAccNo(accNo);

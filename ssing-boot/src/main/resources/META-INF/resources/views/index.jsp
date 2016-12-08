@@ -52,6 +52,10 @@ $(document).ready(function() {
 	<p>
 		<a class="btn btn-default" href="#" role="button">/trade/jongmok</a>
 	</p>
+	<hr/>
+	<p>
+		<a class="btn btn-default" href="#" role="button">/trade/ctx</a>
+	</p>
 </div>
 </body>
 </html>

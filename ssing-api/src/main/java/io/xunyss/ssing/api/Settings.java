@@ -49,18 +49,34 @@ public class Settings {
 		}
 	}
 	
-	private static String get(String key, String defVal) {
+	private static String get(String key, String defaultValue) {
 		if (prop == null) {
-			return defVal;
+			return defaultValue;
 		}
-		return prop.getProperty(key, defVal);
+		return prop.getProperty(key, defaultValue);
 	}
 	private static String get(String key) {
 		return get(key, null);
 	}
+	private static int getInt(String key, int defaultValue) {
+		String value = get(key);
+		return value != null ? Integer.parseInt(value) : defaultValue;
+	}
+//	private static int getInt(String key) {
+//		return getInt(key, 0);
+//	}
 	
 	
 	//--------------------------------------------------------------------------
+	
+	/**
+	 * 
+	 * @return
+	 */
+	static long getLoginTimeout() {
+		return getInt("ssing.login.timeout",
+				5000);						// default
+	}
 	
 	/**
 	 * 
@@ -76,8 +92,8 @@ public class Settings {
 	 * @return
 	 */
 	static int getServerPort() {
-		return Integer.parseInt(get("ssing.server.port",
-				"20001"));					// default
+		return getInt("ssing.server.port",
+				20001);						// default
 	}
 	
 	/**
