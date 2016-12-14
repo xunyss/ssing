@@ -52,6 +52,18 @@ $(document).ready(function() {
 	<p>
 		<a class="btn btn-default" href="#" role="button">/trade/jongmok</a>
 	</p>
+	<p>
+		<a class="btn btn-default" href="#" role="button">/trade/now</a>
+	</p>
+	<p>
+		<a class="btn btn-default" href="#" role="button">/trade/juga</a> next QUERY
+	</p>
+	<p>
+		<a class="btn btn-default" href="#" role="button">/trade/conclude</a> REAL
+	</p>
+	<p>
+		<a class="btn btn-default" href="#" role="button">/trade/tr</a>
+	</p>
 	<hr/>
 	<p>
 		<a class="btn btn-default" href="#" role="button">/trade/ctx</a>
