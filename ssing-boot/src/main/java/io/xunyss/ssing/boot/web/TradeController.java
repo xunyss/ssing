@@ -120,6 +120,7 @@ public class TradeController {
 //				String of1 = iq.getBlockData(block);	// row전체데이터
 //				log.debug("block data: {}", of1);
 //				
+//				
 //			//	iq.clearBlockdata(block);	// block 데이터 지우기 ㅋㅋㅋ
 //				
 //				String r1 = iq.getFieldData(block, "hname", 0);
@@ -251,8 +252,8 @@ public class TradeController {
 		IXAQuery iq = ClassFactory.createXAQuery();
 		
 //		iq.loadFromResFile("\\res\\t1101.res");
-	//	iq.resFileName("\\res\\t1101.res");
-		iq.resFileName("\\res\\t1305.res");//hasNextTR
+		iq.resFileName("\\res\\t1101.res");
+	//	iq.resFileName("\\res\\t1305.res");//hasNextTR
 		
 		String trCode = iq.getTrCode();
 		String trDesc = iq.getTrDesc();

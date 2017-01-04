@@ -6,6 +6,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com4j.EventCookie;
+import io.xunyss.ssing.api.tr.TrInfo;
+import io.xunyss.ssing.api.tr.TrManager;
 import io.xunyss.ssing.xa.dataset.ClassFactory;
 import io.xunyss.ssing.xa.dataset.IXAQuery;
 import io.xunyss.ssing.xa.dataset.events._IXAQueryEvents;
@@ -45,6 +47,10 @@ public abstract class Query {
 		
 		xaQuery.setName(Query.class.getName() + "." + trCode);
 		xaQuery.resFileName("\\res\\" + trCode + ".res");
+		
+		// register TrManager
+		TrManager trManager = TrManager.getInstance();
+		trManager.register(trCode, xaQuery.getTrDesc(), xaQuery.getResData());
 	}
 	
 	public String getTrCode() {
@@ -77,9 +83,20 @@ public abstract class Query {
 	
 	public Object request() {
 		EventCookie eventCookie = xaQuery.advise(_IXAQueryEvents.class, new _IXAQueryEvents() {
+			
+			TrManager trManager = TrManager.getInstance();
+			
 			@Override
 			public void receiveData(String szTrCode) {
+				String res = xaQuery.resFileName();
+				log.debug("res file name: {}", res);
 				log.debug("callback received: {}", szTrCode);
+				
+				TrInfo trInfo = trManager.getTrInfo(szTrCode);
+				
+				String block = "t1101OutBlock";
+				int cnt = xaQuery.getBlockCount(block);
+				
 				wakeup();
 			}
 			
@@ -102,6 +119,7 @@ public abstract class Query {
 			}
 			catch (InterruptedException ie) {
 				ie.printStackTrace();
+				// code for timeout!
 			}
 		}
 		
