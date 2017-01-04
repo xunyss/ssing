@@ -88,8 +88,11 @@ public class Session {
 				getInstance().wakeup();
 			}
 			
+			/*
+			 * callback ¾ÈµÊ
+			 */
 			@Override
-			public void logout() {		// callback ¾ÈµÊ
+			public void logout() {
 				log.info("logout(callback)");
 			}
 			

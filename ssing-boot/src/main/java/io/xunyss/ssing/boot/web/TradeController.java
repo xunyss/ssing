@@ -10,6 +10,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.xunyss.ssing.api.Block;
 import io.xunyss.ssing.api.Query;
 import io.xunyss.ssing.api.Session;
 import io.xunyss.ssing.boot.service.TradeService;
@@ -108,55 +109,58 @@ public class TradeController {
 	@RequestMapping("/now")
 	public String now() {
 		
-		final IXAQuery iq = ClassFactory.createXAQuery();
-		iq.advise(_IXAQueryEvents.class, new _IXAQueryEvents() {
-			@Override
-			public void receiveData(String szTrCode) {
-				log.debug("receiveData : " + szTrCode);
-
-				String block = "t1101OutBlock";
-				
-				String of1 = iq.getBlockData(block);	// row전체데이터
-				log.debug("block data: {}", of1);
-				
-			//	iq.clearBlockdata(block);	// block 데이터 지우기 ㅋㅋㅋ
-				
-				String r1 = iq.getFieldData(block, "hname", 0);
-				String r2 = iq.getFieldData(block, "price", 0);
-				log.debug("--------------------------------------");
-				log.debug(r1 + ": " + r2);
-				
-				int errcode = iq.getLastError();
-				String errmsg = iq.getErrorMessage(errcode);
-				log.debug("{}, {}", errcode, errmsg);
-				
-				int ac = iq.getAccountListCount();
-				String an = iq.getAccountList(0);
-				log.debug("{}, {}", ac, an);
-				
-				String attr = iq.getAttribute("t1101OutBlock", "hname", "Use", 0);
-				log.debug("attr: {}", attr);
-				
-				////////////////////////////////////
-			//	int type = iq.getBlockSize("t1101OutBlock");	// 더이상지원하지않음
-			//	System.err.println(type + 1);
-//				String ss = iq.getFieldDescList("t1101OutBlock");	// 더이상지원하지않음
-//				System.err.println(ss);
-				
-				iq.dispose();
-			}
-		});
-		iq.resFileName("\\res\\t1101.res");
-		iq.setFieldData("t1101InBlock", "shcode", 0, "000660");
-		
-		int res = iq.request(false);
-		log.debug("request result: {}", res);
+//		final IXAQuery iq = ClassFactory.createXAQuery();
+//		iq.advise(_IXAQueryEvents.class, new _IXAQueryEvents() {
+//			@Override
+//			public void receiveData(String szTrCode) {
+//				log.debug("receiveData : " + szTrCode);
+//
+//				String block = "t1101OutBlock";
+//				
+//				String of1 = iq.getBlockData(block);	// row전체데이터
+//				log.debug("block data: {}", of1);
+//				
+//			//	iq.clearBlockdata(block);	// block 데이터 지우기 ㅋㅋㅋ
+//				
+//				String r1 = iq.getFieldData(block, "hname", 0);
+//				String r2 = iq.getFieldData(block, "price", 0);
+//				log.debug("--------------------------------------");
+//				log.debug(r1 + ": " + r2);
+//				
+//				int errcode = iq.getLastError();
+//				String errmsg = iq.getErrorMessage(errcode);
+//				log.debug("{}, {}", errcode, errmsg);
+//				
+//				int ac = iq.getAccountListCount();
+//				String an = iq.getAccountList(0);
+//				log.debug("{}, {}", ac, an);
+//				
+//				String attr = iq.getAttribute("t1101OutBlock", "hname", "Use", 0);
+//				log.debug("attr: {}", attr);
+//				
+//				////////////////////////////////////
+//			//	int type = iq.getBlockSize("t1101OutBlock");	// 더이상지원하지않음
+//			//	System.err.println(type + 1);
+//			//	String ss = iq.getFieldDescList("t1101OutBlock");	// 더이상지원하지않음
+//			//	System.err.println(ss);
+//				
+//				iq.dispose();
+//			}
+//		});
+//		iq.resFileName("\\res\\t1101.res");
+//		iq.setFieldData("t1101InBlock", "shcode", 0, "000660");
+//		
+//		int res = iq.request(false);
+//		log.debug("request result: {}", res);
 		
 		///////////////////////////////////////////////////////////
 		
+		Block block = new Block("t1101InBlock");
+		block.set(0, "shcode", "000660");
+		
 		Query query = Query.create("t1101");
-		query.setInput("000660");
-//		query.request();
+		query.setBlock(block);
+		query.request();
 		
 		return "OK";
 	}
